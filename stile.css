@@ -1,112 +1,110 @@
 body {
-    background: oldlace; /* Задает цвет фона страницы в приятный, светло-желтый цвет (oldlace). */
-    padding: 20px; /* Добавляет отступы вокруг содержимого на странице в 20 пикселей. */
-    font-family: Helvetica, Arial, Sans-Serif; /* Устанавливает шрифты для текста на странице. Сначала Helvetica, затем Arial, если Helvetica недоступен, и в конце любой стандартный без засечек (Sans-Serif). */
+    background: oldlace;
+    padding: 20px;
+    font-family: Helvetica, Arial, Sans-Serif;
 }
 
 #app {
-    display: grid; /* Использует CSS Grid для организации карточек в виде сетки. */
-    grid-template-columns: repeat(auto-fit, 100px); /* Устанавливает количество колонок сетки так, чтобы каждая колонка была шириной 100px, и автоматически подстраивает количество колонок под доступное пространство. */
-    grid-auto-rows: 100px; /* Устанавливает высоту всех строк в 100 пикселей. */
-    grid-gap: 20px; /* Задает расстояние (20px) между карточками. */
-    justify-content: center; /* Центрирует сетку карточек по горизонтали. */
-    perspective: 800px; /* Создает 3D-перспективу для карточек, которые будут переворачиваться. Чем больше значение, тем меньше эффект перспективы. */
-    max-width: 720px; /* Устанавливает максимальную ширину контейнера (720px), чтобы сетка не выходила за пределы этого значения. */
-    margin: 0 auto; /* Центрирует весь контейнер на странице. Отступы по горизонтали устанавливаются автоматически. */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 100px);
+    grid-auto-rows: 100px;
+    grid-gap: 20px;
+    justify-content: center;
+    perspective: 800px;
+    max-width: 720px;
+    margin: 0 auto;
 }
 
 i.fas {
-    font-size: 10px; /* Устанавливает размер иконок внутри карточек на 40px. */
-    color: #1d2532; /* Устанавливает цвет иконок (темно-синий цвет). */
-    transform: rotate(-45deg); /* Поворачивает иконку обратно на -45 градусов, чтобы она не поворачивалась вместе с карточкой. */
+    font-size: 10px;
+    color: #1d2532;
+    transform: rotate(-45deg);
 }
 
 .victoryState {
-    grid-column-start: 1; /* Задает, что элемент с классом .victoryState должен начинаться с первой колонки сетки. */
-    grid-column-end: -1; /* Элемент растягивается до последней колонки сетки. */
-    text-align: center; /* Центрирует текст внутри элемента по горизонтали. */
-    display: flex; /* Использует Flexbox для выравнивания содержимого. */
-    justify-content: space-between; /* Размещает содержимое (кнопки и текст) с равным расстоянием между ними по горизонтали. */
-    align-items: center; /* Центрирует содержимое по вертикали внутри контейнера. */
+    grid-column-start: 1;
+    grid-column-end: -1;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .card {
-    background: #fff; /* Устанавливает белый цвет фона для карточек. */
-    display: flex; /* Использует Flexbox для центрирования содержимого карточки (иконки) по горизонтали и вертикали. */
-    justify-content: center; /* Центрирует содержимое по горизонтали. */
-    align-items: center; /* Центрирует содержимое по вертикали. */
-    border-radius: 42px; /* Делает углы карточек закругленными с радиусом 40px. */
-    box-shadow: 5px 5px 0 0 #5f657b; /* Добавляет тень карточке с небольшим смещением вправо и вниз (5px) и фиксированной толщиной тени (темно-синий цвет). */
-    cursor: pointer; /* Устанавливает указатель (курсор), который отображается при наведении мыши на карточку. */
-    animation: flipUp .5s forwards; /* Применяет анимацию flipUp (переворот вверх) длительностью 0.5 секунды, анимация будет завершена (forwards). */
-    transform: rotate(45deg); /* Поворачивает карточку на 45 градусов. */
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 42px;
+    box-shadow: 5px 5px 0 0 #5f657b;
+    cursor: pointer;
+    animation: flipUp .5s forwards;
+    transform: rotate(45deg);
 }
 
 .card i {
-    opacity: 1; /* Делает иконки полностью видимыми. */
-    transition: opacity .5s; /* Устанавливает плавное изменение прозрачности (opacity) длительностью 0.5 секунды при изменении состояния карточки. */
+    opacity: 1;
+    transition: opacity .5s;
 }
 
 .card.down {
-    animation: flipDown .5s forwards; /* Применяет анимацию flipDown (переворот вниз) длительностью 0.5 секунды, анимация будет завершена (forwards). */
+    animation: flipDown .5s forwards;
 }
 
 .card.down i {
-    opacity: 0; /* Делает иконки полностью невидимыми, когда карточка переворачивается вниз. */
+    opacity: 0;
 }
 
 .card.matched {
-    animation: matching .3s forwards; /* Применяет анимацию "matching" (совпадение) длительностью 0.3 секунды для карточек, которые были угаданы. Анимация фиксируется в конце (forwards). */
+    animation: matching .3s forwards;
 }
 
 @keyframes flipDown {
     0% {
-        background: #fff; /* Начальный цвет фона карточки (белый). */
-        transform: rotate(45deg); /* Карточка на начальном этапе анимации повернута на 45 градусов. */
-        box-shadow: 5px 5px 0 0 #5f657b; /* Тень с небольшим смещением, как у начальной карточки. */
+        background: #fff;
+        transform: rotate(45deg);
+        box-shadow: 5px 5px 0 0 #5f657b;
     }
     100% {
-        background: #9f78ff; /* Цвет фона карточки после переворота становится светло-фиолетовым. */
-        transform: rotateY(180deg) rotate(45deg); /* Карточка переворачивается на 180 градусов по оси Y и остается под углом 45 градусов. */
-        box-shadow: -5px 5px 0 0 #5f657b; /* Тень меняется, чтобы отображать перевернутую карточку. */
+        background: #9f78ff;
+        transform: rotateY(180deg) rotate(45deg);
+        box-shadow: -5px 5px 0 0 #5f657b;
     }
 }
 
 @keyframes flipUp {
     0% {
-        background: #9f78ff; /* Начальный цвет фона (светло-фиолетовый), когда карточка перевернута. */
-        transform: rotateY(180deg) rotate(45deg); /* Начальная позиция анимации: карточка перевернута на 180 градусов и наклонена на 45 градусов. */
-        box-shadow: -5px 5px 0 0 #5f657b; /* Тень для перевернутой карточки с противоположным смещением. */
+        background: #9f78ff;
+        transform: rotateY(180deg) rotate(45deg);
+        box-shadow: -5px 5px 0 0 #5f657b;
     }
     100% {
-        background: #fff; /* Цвет фона карточки после переворота вверх возвращается к белому. */
-        transform: rotate(45deg); /* Карточка остается повёрнутой на 45 градусов после переворота вверх. */
-        box-shadow: 5px 5px 0 0 #5f657b; /* Тень возвращается в исходное положение. */
+        background: #fff;
+        transform: rotate(45deg);
+        box-shadow: 5px 5px 0 0 #5f657b;
     }
 }
 
 @keyframes matching {
     0% {
-        background: #fff; /* Начальный цвет совпавшей карточки (белый). */
+        background: #fff;
     }
     100% {
-        background: #ffb609; /* Цвет совпавшей карточки меняется на желто-оранжевый (победный цвет). */
+        background: #ffb609;
     }
 }
 
-/* Затемнение экрана */
 .overlay {
     position: fixed;
     top: -5%;
     left: -2.5%;
-    width: 105%; /* Устанавливаем ширину на весь экран */
-    height: 110%; /* Устанавливаем высоту на весь экран */
+    width: 105%;
+    height: 110%;
     border-radius: 50px;
-    background: rgba(0, 0, 0, 0.7); /* Полупрозрачное черное затемнение */
-    z-index: 10; /* Поверх всех элементов */
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10;
 }
 
-/* Плашка с информацией о завершении игры */
 .victory-popup {
     position: fixed;
     top: 50%;
@@ -116,7 +114,7 @@ i.fas {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    z-index: 11; /* Поверх затемнения */
+    z-index: 11;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -140,8 +138,60 @@ i.fas {
 }
 
 .card-icon {
-    width: 60%; /* Иконка будет занимать всю ширину карточки */
-    height: 60%; /* Иконка будет занимать всю высоту карточки */
+    width: 60%;
+    height: 60%;
     transform: rotate(-45deg);
-    object-fit: contain; /* Сохраняет пропорции иконки, подгоняя её под размеры карточки */
+    object-fit: contain;
+}
+
+/* Адаптация для мобильных устройств (ширина экрана меньше 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    #app {
+        grid-template-columns: repeat(auto-fit, 80px);
+        grid-auto-rows: 80px;
+        grid-gap: 10px;
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: 3px 3px 0 0 #5f657b;
+    }
+
+    .card-icon {
+        width: 50%;
+        height: 50%;
+    }
+
+    .victory-popup {
+        width: 90%;
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .victory-popup button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Адаптация для планшетов (ширина экрана от 768px до 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #app {
+        grid-template-columns: repeat(auto-fit, 90px);
+        grid-auto-rows: 90px;
+    }
+
+    .card {
+        border-radius: 30px;
+        box-shadow: 4px 4px 0 0 #5f657b;
+    }
+
+    .card-icon {
+        width: 55%;
+        height: 55%;
+    }
 }
