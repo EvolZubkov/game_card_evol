@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    
+    <!-- Подключение Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- Подключение Lodash -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
+    <!-- Подключение Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="stile.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Затемнение экрана и плашка отображаются только если игра завершена -->
+        <div class="overlay" v-if="victory"></div>
+        
+        <!-- Плашка с информацией -->
+        <div class="victory-popup" v-if="victory">
+            <p>Поздравляем! Вы завершили игру!</p>
+            <p>Время прохождения: {{ elapsedTime }} секунд</p>
+            <p>Количество ходов: {{ movesCount }}</p>
+            <button v-on:click="restartGame" class="btn btn-primary">Начать заново</button>
+        </div>
+    
+        <!-- Игровые карточки -->
+        <div class="card" v-for="card in cards" @click="handleClick(card)" :class="{ down: card.down, matched: card.matched }">
+            <!-- Меняем Font Awesome на иконки SVG -->
+            <img v-if="!card.down || card.matched" :src="card.icon" alt="icon" class="card-icon"/>
+        </div>
+    </div>
+
+    <!-- Подключение скриптов -->
+    <script src="game.js"></script>
+   
+</body>
+
+</html>
