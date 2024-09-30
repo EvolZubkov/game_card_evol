@@ -147,36 +147,37 @@ i.fas {
 /* Адаптация для мобильных устройств (ширина экрана меньше 768px) */
 @media (max-width: 768px) {
     body {
-        padding: 10px;
+        padding: 5px;
     }
-    
+
     #app {
-        grid-template-columns: repeat(auto-fit, 80px);
-        grid-auto-rows: 80px;
-        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* Карточки по 60px и автоматически подгоняются */
+        grid-auto-rows: 60px; /* Высота строк 60px */
+        grid-gap: 5px; /* Уменьшаем расстояние между карточками до 5px */
     }
 
     .card {
-        border-radius: 20px;
-        box-shadow: 3px 3px 0 0 #5f657b;
+        border-radius: 10px; /* Слегка уменьшенные углы на мобильных */
+        box-shadow: 2px 2px 0 0 #5f657b; /* Меняем тень на меньшую */
     }
 
     .card-icon {
-        width: 50%;
-        height: 50%;
+        width: 40%; /* Уменьшаем размер иконок внутри карточек */
+        height: 40%;
     }
 
     .victory-popup {
-        width: 90%;
-        padding: 15px;
-        font-size: 14px;
+        width: 90%; /* Плашка победы занимает 90% ширины экрана */
+        padding: 10px;
+        font-size: 12px; /* Уменьшаем размер текста на мобильных */
     }
 
     .victory-popup button {
         padding: 8px 16px;
-        font-size: 14px;
+        font-size: 12px; /* Уменьшаем размер кнопок */
     }
 }
+
 
 /* Адаптация для планшетов (ширина экрана от 768px до 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
